@@ -63,7 +63,7 @@
                             <i :class="[
                                 'fas', 
                                 [ loading ? 'fa-spinner fa-spin' : 'fa-sign-in-alt' ], 
-                                'px-2'  //
+                                'px-2'
                             ]"></i>
                         </button>
                     </div>
@@ -90,16 +90,16 @@
             }
         },
         created() {
-            if(this.loginToken) {  //
+            if(this.loginToken) {
                 this.$router.push({
-                    name: 'tweets'  //
+                    name: 'tweets'
                 });
             }
         },
         methods: {
             signup() {
                 this.loading = true;
-                axios.request({  //
+                axios.request({
                     method: "post",
                     url: "https://tweeterest.ml/api/users",
                     headers: {
@@ -115,21 +115,20 @@
                     }
                 })
                 .then((response) => {
-                    console.log(response);  //
+                    console.log(response);
                     if(response.status == 201) {
-                        // this.$store.commit("setToken", response.data.loginToken);
-                        cookies.set("session", response.data.loginToken);  //stash loginToken in a cookie //
+                        cookies.set("session", response.data.loginToken);
                         cookies.set("userId", response.data.userId);
-                        this.$router.push({  //display the tweets page
-                            name: "tweets"  //
+                        this.$router.push({
+                            name: "tweets"
                         });
                     }
                     this.loading = false;
                 })
                 .catch((error) => {
                     this.errorText = "There was an error.";
-                    console.log(error);  //
-                    this.loading = false;  //
+                    console.log(error);
+                    this.loading = false;
                 });
             },
         },

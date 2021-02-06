@@ -3,13 +3,6 @@
         <hr>
         <p class='is-size-4'>user: {{ tweetObject.username }}</p>
         <p class='is-size-5'>{{ tweetObject.content }}</p>
-        <!-- <p>{{ followedTweets }}</p>
-        <p>{{ tweetFollowing }}</p>
-        <p>{{ tweetObject.userId }}</p> -->
-
-        <!-- <p>COMMENT: {{ comment }}</p> -->
-        <!-- <p>{{ tweetObject.tweetId }}</p> -->
-        <!-- <h5>{{ tweetObject.createdAt }}</h5> -->
         <tweet-like-button :tweetId='tweetObject.tweetId'></tweet-like-button>
         <tweet-editor @update-tweet='updateTweet' v-if="ownership" :tweetId='tweetObject.tweetId'></tweet-editor>
         <tweet-delete-button @delete-tweet='deleteTweet' v-if="ownership" :tweetId='tweetObject.tweetId'></tweet-delete-button>
@@ -23,12 +16,7 @@
                 </div>
             </div>
             <comment-creator @getComment='getComments' :tweetId="tweetObject.tweetId"></comment-creator>
-                <!--@getComment='getComments' ADDED IN ORDER TO DISPLAY COMMENTS-->
         </div>
-        <!-- <comment-display :tweetId='tweetObject.tweetId'></comment-display> -->
-        <!-- <comment-creator :tweetId='tweetObject.tweetId'></comment-creator> -->
-
-        <!-- <comment-creator v-if="showComments"></comment-creator> -->
     </div>
 </template>
 
@@ -49,15 +37,14 @@
             CommentDisplay,
             CommentCreator
         },
-        props: {  //"i'm expecting a tweet object"  //see line 12 in #4?
-            tweetObject: {  //needed to display tweets
+        props: {
+            tweetObject: {
                 type: Object,
                 required: true
             },
         },
         data() {
             return {
-                // userId: cookies.get('userId'),
                 ownership: cookies.get('userId') == this.tweetObject.userId,
                 tweetFollowing: false,
                 followedTweets: [],
@@ -91,7 +78,6 @@
                 }).then((response) => {
                     console.log(response);
                     this.followedTweets = response.data;
-                    // this.numberFollowed = this.FollowedUsers.length;                    
                     for(let i = 0; i < this.followedTweets.length; i++) {
                         if(this.tweetObject.userId == this.followedTweets[i].userId) {
                             this.tweetFollowing = true;
@@ -101,7 +87,7 @@
                     console.log(error);
                 });
             },            
-            postComment(comment) {  //ADDED IN ORDER TO DISPLAY COMMENTS
+            postComment(comment) {
                 this.comments.push(comment);                
             },
             showComments() {

@@ -31,12 +31,6 @@
                 password: ''
             }
         },
-        // props: {
-        //     password: {
-        //         type: String,
-        //         required: true
-        //     }
-        // },
         methods: {
             deleteAccount: function() {
                 axios.request({

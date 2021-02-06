@@ -1,9 +1,6 @@
 <template>
     <div class="remover">
         <button class="button is-danger" @click='deleteTweet'>Delete</button>
-        <!-- <h3>{{ tweetObject.username }}</h3>
-        <p>{{ tweetObject.content }}</p> -->
-        <!-- <h5>{{ tweetObject.createdAt }}</h5> -->
     </div>
 </template>
 
@@ -12,7 +9,7 @@
     import cookies from 'vue-cookies';
     export default {
         name: "tweet-delete-button",
-        props: {  //need to use props to get tweetId
+        props: {
             tweetId: {
                 type: Number,
                 required: true
@@ -35,23 +32,10 @@
                 .then((response) => {
                     console.log(response);
                     this.$emit('delete-tweet');
-                    // if(response.status == 201) {  //200?
-                    //     // this.$store.commit("setToken", response.data.loginToken);
-                    //     cookies.set("session", response.data.loginToken);  //stash loginToken in a cookie //
-                    //     this.$router.push({  //display the tweets page
-                    //         name: "tweets"  //
-                    //     });
-                    // }
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
-
-        //         this.$store.commit('signout');
-        //         this.$router.push({
-        //             name: 'login'
-        //         });  //displays login page upon signout
             }
         }
     }
@@ -64,8 +48,3 @@
         margin-bottom: 30px;
     }
 </style>
-
-
-
-//if parent has a tweet object, it should pass it to TweetDisplay.vue
-    which should figure out what to do with it

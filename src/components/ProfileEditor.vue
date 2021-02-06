@@ -76,12 +76,6 @@
                 birthdate: ''
             }
         },
-        // props: {  //need to use props to get userId
-        //     userId: {  //should be object?
-        //         type: Number,
-        //         required: true
-        //     }
-        // },
         methods: {
             editProfile: function() {
                 axios.request({

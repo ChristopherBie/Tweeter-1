@@ -5,9 +5,6 @@
             <textarea v-model="tweetContent"></textarea>
             <button class="button is-success" @click='editTweet'>Update tweet</button>
         </div>
-        <!-- <h3>{{ tweetObject.username }}</h3>
-        <p>{{ tweetObject.content }}</p> -->
-        <!-- <h5>{{ tweetObject.createdAt }}</h5> -->
     </div>
 </template>
 
@@ -22,7 +19,7 @@
                 tweetContent: ''
             }
         },
-        props: {  //need to use props to get tweetId
+        props: {
             tweetId: {
                 type: Number,
                 required: true

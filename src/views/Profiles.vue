@@ -2,7 +2,6 @@
     <div>
         <div class="navbar">
             <button class="button is-link" @click='displayTweetsPage'>View tweets</button>
-                <!-- add different class? -->
             <signout-button></signout-button>
             <hr>
             <h1 class='title is-3'>Profiles</h1>
@@ -28,8 +27,6 @@
         data() {
             return {
                 users: [],
-                // user: {},
-                // userId: cookies.get("userId")
             }
         },
         mounted: function() {
@@ -65,11 +62,11 @@
             }
         },
         created() {
-            console.log(this.$router);  //
+            console.log(this.$router);
             console.log(this.loginToken);
             if(!cookies.get('session')) {
                 this.$router.push({
-                    name: 'login'  //
+                    name: 'login'
                 });
             }
         }

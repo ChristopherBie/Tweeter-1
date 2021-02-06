@@ -1,7 +1,3 @@
-
-
-
-//copied from TweetDisplay
 <template>
     <div class='profile-container'>
         <h3 class='is-size-4'>user: {{ user.username }}</h3>
@@ -11,7 +7,6 @@
         <profile-editor @update-profile='updateProfile' v-if='ownership'></profile-editor>
         <profile-delete-button v-if='ownership'></profile-delete-button>
         <follow-user-button :userId="user.userId"></follow-user-button>
-            <!-- :tweetId='tweetObject.tweetId' -->
         <hr>
     </div>
 </template>
@@ -36,8 +31,7 @@
         },
         data() {
             return {
-                ownership: cookies.get('userId') == this.user.userId,  //this.profile.userId?
-                // userId: cookies.get('userId'),
+                ownership: cookies.get('userId') == this.user.userId,
                 users: [],
                 username: this.user.username,
                 email: this.user.email,
@@ -46,8 +40,8 @@
                 birthdate: this.user.birthdate,
             }
         },
-        methods: {  //MOVE TO OTHER COMPONENTS 
-            updateProfile(newUsername, newEmail, newPassword, newBio, newBirthdate) {  //CHANGE?
+        methods: {
+            updateProfile(newUsername, newEmail, newPassword, newBio, newBirthdate) {
                 this.username = newUsername;
                 this.email = newEmail;
                 this.password = newPassword;
@@ -55,11 +49,6 @@
                 this.birthdate = newBirthdate;
                 this.$emit('getProfile');
             },
-            // deleteProfile() {  //CHANGE?
-            //     this.username = newUserame;
-            //     this.bio = newBio;
-            //     this.birthdate = newBirthdate;
-            // }
         }
     }
 </script>

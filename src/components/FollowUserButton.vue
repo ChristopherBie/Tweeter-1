@@ -4,14 +4,6 @@
             <span v-if='following'>Stop following</span>
             <span v-else>Follow</span>
         </button>
-        <!-- {{ following }} -->
-        <!-- <p id='number-followed'>You are following {{ numberFollowed }} user(s).</p> -->
-        
-        <!-- <button @click='likeTweet'>
-            <span v-if='gridView'>List view</span>
-            <span v-else>Grid view</span>
-        </button>
-        <div id='view' :class='{ 'grid-view': gridView }'> -->
     </div>
 </template>
 
@@ -22,10 +14,8 @@
         name: "follow-user-button",
         data() {
             return {
-                // userId: cookies.get("userId"),
                 following: false,
                 followedUsers: [],
-                // numberFollowed: 0
             }
         },
         props: {
@@ -33,17 +23,8 @@
         },
         mounted: function() {
             this.getFollowedUsers();
-            // this.userId = cookies.get("userId");
         },
         methods: {
-            // likeOrUnlikeTweet(liked, tweetId) {
-            //     if(this.liked == false) {
-            //         likeTweet(tweetId);
-            //     } else {
-            //         unlikeTweet(tweetId);
-            //     }
-            //     this.liked = !this.liked;
-            // },
             getFollowedUsers: function() {
                 axios.request({
                     method: "get",
@@ -58,7 +39,6 @@
                 }).then((response) => {
                     console.log(response);
                     this.FollowedUsers = response.data;
-                    // this.numberFollowed = this.FollowedUsers.length;                    
                     for(let i = 0; i < this.FollowedUsers.length; i++) {
                         if(this.userId == this.FollowedUsers[i].userId) {
                             this.following = true;
@@ -84,7 +64,6 @@
                     }).then((response) => {
                         console.log(response);
                         this.following = true;
-                        // this.numberFollowed++;
                     }).catch((error) => {
                         console.log(error);
                     });
@@ -103,7 +82,6 @@
                     }).then((response) => {
                         console.log(response);
                         this.following = false;
-                        // this.numberFollowed--;
                     }).catch((error) => {
                         console.log(error);
                     });

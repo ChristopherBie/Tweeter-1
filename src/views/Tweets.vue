@@ -1,7 +1,6 @@
 <template>
     <div id="tweets">
         <div class="navbar">
-            <!-- <button class="button is-link" @click='getTweets'>Refresh tweets</button> -->
             <button class="button is-success" @click='displayProfilesPage'>View profiles</button>
             <signout-button></signout-button>
             <hr>
@@ -12,15 +11,9 @@
         <a href='#tweet-creator-anchor'>
             <button class="button is-success">Write a tweet</button>
         </a>
-        <!-- <button @click='toggleView'>
-            <span v-if='gridView'>List view</span>
-            <span v-else>Grid view</span>
-        </button> -->
-        <!-- <div id='view' :class='{ 'grid-view': gridView }'> -->
-        <div v-for="tweet in tweets" :key="tweet.tweetId">  <!-- see line 8 in #3? -->
+        <div v-for="tweet in tweets" :key="tweet.tweetId">
             <tweet-display @getTweet='getTweets' :tweetObject="tweet"></tweet-display>
         </div>
-        <!-- <h1>tweets by people you follow</h1> -->
         <tweet-creator @getTweet='getTweets'></tweet-creator>
     </div>
 </template>
@@ -43,14 +36,13 @@
                 tweets: []
             }
         },
-        //add props here like in #2?
         mounted: function() {
             this.getTweets();
         },
         methods: {
             displayProfilesPage: function() {
                 this.$router.push({
-                    name: 'profiles'  //
+                    name: 'profiles'
                 });
             },
             getTweets: function() {
@@ -61,13 +53,8 @@
                         "Content-Type": "application/json",
                         "X-Api-Key": "X4jpwzTZ0PRaesSZyR8C398fMTT8JvfZ1RM5I76SdBi8A"
                     },
-                    // params: {
-                    //     userId: this.userId,
-                    // },
                 })
-                .then((response) => {  //want to display tweets; need:
-                                           //-var for data from API
-                                           //-loop
+                .then((response) => {
                     console.log(response);
                     this.tweets = response.data;
                 })
@@ -82,11 +69,11 @@
             }
         },
         created() {
-            console.log(this.$router);  //
+            console.log(this.$router);
             console.log(this.loginToken);
             if(!cookies.get('session')) {
                 this.$router.push({
-                    name: 'login'  //
+                    name: 'login'
                 });
             }
         }
@@ -97,13 +84,6 @@
     * {
         padding-left: 6px;
     }
-    /* .header, .bottom {
-        background-color: skyblue;
-    } */
-    /* button {
-        padding-left: 0px;
-        margin-left: 0px;
-    } */
     .navbar button {
         margin-right: 40px;
         margin-top: 22px;

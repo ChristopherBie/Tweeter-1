@@ -5,9 +5,6 @@
             <textarea v-model="commentContent"></textarea>
             <button class="button is-success" @click='editComment'>Update comment</button>
         </div>
-        <!-- <h3>{{ commentObject.username }}</h3>
-        <p>{{ commentObject.content }}</p> -->
-        <!-- <h5>{{ commentObject.createdAt }}</h5> -->
     </div>
 </template>
 

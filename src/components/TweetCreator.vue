@@ -21,7 +21,7 @@
         },
         methods: {
             postTweet: function() {
-                this.tweetStatus = 'tweeting...'  //tell user that API call is happening
+                this.tweetStatus = 'tweeting...'
                 axios.request({
                     method: 'post',
                     url: 'https://tweeterest.ml/api/tweets',

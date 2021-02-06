@@ -8,8 +8,6 @@
 </template>
 
 <script>
-    // import axios from "axios";
-    // import cookies from 'vue-cookies';
     import SigninForm from "@/components/SigninForm.vue";
     import SignupForm from "@/components/SignupForm.vue";
     export default {
@@ -18,28 +16,6 @@
             SigninForm,
             SignupForm
         },
-        // data() {
-        //     return {
-        //         email: '',
-        //         username: '',
-        //         password: '',
-        //         bio: '',
-        //         birthdate: '',
-        //         errorText: '',
-        //         loading: false,
-        //     }
-        // },
-        // methods: {
-        //     signin: function() {
-        //     }
-        // },
-        // created() {
-        //     if(this.Logintoken) {  //
-        //         this.$router.push({
-        //             name: 'tweets'  //
-        //         });
-        //     }
-        // },
     };
 </script>
 

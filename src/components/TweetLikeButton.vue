@@ -5,12 +5,6 @@
             <span v-else>Like this tweet</span>
         </button>
         <p id='number-of-likes'>{{ numberOfLikes }} user(s) like(s) this.</p>
-        
-        <!-- <button @click='likeTweet'>
-            <span v-if='gridView'>List view</span>
-            <span v-else>Grid view</span>
-        </button>
-        <div id='view' :class='{ 'grid-view': gridView }'> -->
     </div>
 </template>
 
@@ -33,14 +27,6 @@
             this.getLikes();
         },
         methods: {
-            // likeOrUnlikeTweet(liked, tweetId) {
-            //     if(this.liked == false) {
-            //         likeTweet(tweetId);
-            //     } else {
-            //         unlikeTweet(tweetId);
-            //     }
-            //     this.liked = !this.liked;
-            // },
             getLikes: function() {
                 axios.request({
                     method: "get",

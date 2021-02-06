@@ -11,8 +11,7 @@
                                 type="email"
                                 placeholder="email address"
                                 class="input"
-                                v-model="email"
-                            />  <!-- the input class is required By Bulma -->
+                                v-model="email"/>  <!-- the input class is required By Bulma -->
                         </div>
                     </div>
                     <div class="field">
@@ -22,8 +21,7 @@
                                 type="password"
                                 placeholder="password"
                                 class="input"
-                                v-model="password"
-                            />
+                                v-model="password"/>
                         </div>
                     </div>
                     <div class="field" v-if="errorText">
@@ -35,7 +33,7 @@
                             <i :class="[
                                 'fas', 
                                 [ loading ? 'fa-spinner fa-spin' : 'fa-sign-in-alt' ], 
-                                'px-2'  //
+                                'px-2'
                             ]"></i>
                         </button>
                     </div>
@@ -59,16 +57,16 @@
             }
         },
         created() {
-            if(this.loginToken) {  //
+            if(this.loginToken) {
                 this.$router.push({
-                    name: 'tweets'  //
+                    name: 'tweets'
                 });
             }
         },
         methods: {
             signin() {
                 this.loading = true;
-                axios.request({  //
+                axios.request({
                     method: "post",
                     url: "https://tweeterest.ml/api/login",
                     headers: {
@@ -81,21 +79,20 @@
                     }
                 })
                 .then((response) => {
-                    console.log(response);  //
-                    if(response.status == 201) {  //200?
-                        // this.$store.commit("setToken", response.data.loginToken);
-                        cookies.set("session", response.data.loginToken);  //stash loginToken in a cookie //
+                    console.log(response);
+                    if(response.status == 201) {
+                        cookies.set("session", response.data.loginToken);
                         cookies.set("userId", response.data.userId);
-                        this.$router.push({  //display the tweets page
-                            name: "tweets"  //
+                        this.$router.push({
+                            name: "tweets"
                         });
                     }
                     this.loading = false;
                 })
                 .catch((error) => {
                     this.errorText = "The email address and/or password is incorrect.";
-                    console.log(error);  //
-                    this.loading = false;  //
+                    console.log(error);
+                    this.loading = false;
                 });
             },
         },

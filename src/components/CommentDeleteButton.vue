@@ -1,9 +1,6 @@
 <template>
     <div class="remover">
         <button class="button is-danger" @click='deleteComment'>Delete</button>
-        <!-- <h3>{{ tweetObject.username }}</h3>
-        <p>{{ tweetObject.content }}</p> -->
-        <!-- <h5>{{ tweetObject.createdAt }}</h5> -->
     </div>
 </template>
 
@@ -12,7 +9,7 @@
     import cookies from 'vue-cookies';
     export default {
         name: "comment-delete-button",
-        props: {  //need to use props to get commentId
+        props: {
             commentId: {
                 type: Number,
                 required: true
@@ -35,23 +32,10 @@
                 .then((response) => {
                     console.log(response);
                     this.$emit('delete-comment');
-                    // if(response.status == 201) {  //200?
-                    //     // this.$store.commit("setToken", response.data.loginToken);
-                    //     cookies.set("session", response.data.loginToken);  //stash loginToken in a cookie //
-                    //     this.$router.push({  //display the comments page
-                    //         name: "comments"  //
-                    //     });
-                    // }
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
-
-        //         this.$store.commit('signout');
-        //         this.$router.push({
-        //             name: 'login'
-        //         });  //displays login page upon signout
             }
         }
     }

@@ -8,15 +8,7 @@
             placeholder='write a comment'>
         </textarea>
         <br>
-        <button class="button is-success post" @click='postComment()'>Post this comment</button>  <!--() ADDED IN ORDER TO DISPLAY COMMENTS -MADE A DIFFERENCE?-->
-        <!-- <p>{{ content }}</p>
-        <p>{{ tweetId }}</p> -->
-        <!-- <div v-for='(comment, index) in comments' :key='index'>
-            comment text
-            <br>  -author
-        </div> -->
-
-        <!-- <hr> -->
+        <button class="button is-success post" @click='postComment()'>Post this comment</button>
     </div>
 </template>
 
@@ -27,23 +19,14 @@
         name: "comment-creator",
         data() {
             return {
-                commentContent: ''//,
-                // comments: []  //add sth here?
+                commentContent: ''
             }
         },
         props: {
-            // commentContent: {
-            //     type: Object,
-            // },
-            // tweetId: {
-            //     type: Number,
-            //     required: true
-            // }
             tweetId: Number
         },
         methods: {
             postComment: function() {
-                // alert(this.tweetId);
                 axios.request({
                     method: "post",
                     url: 'https://tweeterest.ml/api/comments',
@@ -55,15 +38,11 @@
                         loginToken: cookies.get('session'),
                         tweetId: this.tweetId,
                         content: this.commentContent
-                    }//,
-                    // params: {
-                    //     tweetId: this.tweetId
-                    // }
+                    }
                 })
                 .then((response) => {
                     console.log(response);
                     this.$emit('getComment');
-                        //FIXED (FROM this.$emit('post-comment', this.commentContent)) IN ORDER TO DISPLAY COMMENTS
                     this.commentContent = '';
                 })
                 .catch((error) => {
@@ -75,10 +54,6 @@
 </script>
 
 <style>
-    /* .post-comment {
-        margin-top: 0px;
-        padding-top: 0px;
-    } */
     #comment-text {
         margin-top: 10px;
         padding-bottom: 0px;
